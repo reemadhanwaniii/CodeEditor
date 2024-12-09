@@ -12,12 +12,21 @@ import "ace-builds/src-noconflict/mode-python";
 import "ace-builds/src-noconflict/ext-language_tools";
 
 
-export default function Description({ descriptionText }) {
+export default function Description({ descriptionText }: {descriptionText: string}) {
 
     const sanitizedMarkdown = Dompurify.sanitize(descriptionText);
     const [activeTab,setActiveTab] = useState('statement');
     const [leftWidth,setLeftWidth] = useState(50);
     const [isDragging,setIsDragging] = useState(false);
+
+
+    const isActiveTab = (tabName: string) => {
+        if(activeTab === tabName) {
+            return 'tab tab-active';
+        } else {
+            return 'tab'
+        }
+    }
 
     const startDragging = (e: MouseEvent) => {
         setIsDragging(true);
@@ -47,10 +56,10 @@ export default function Description({ descriptionText }) {
        
       >
         <div className='left-panel h-full overflow-auto' style={{width: `${leftWidth}%`}}>
-            <div className='tabs'>
-                <button onClick={() => setActiveTab('statement')}>Problem Statement</button>
-                <button onClick={() => setActiveTab('editorial')}>Editorial</button>
-                <button onClick={() => setActiveTab('submission')}>Submission</button>
+            <div role="tablist" className="tabs tabs-boxed w-3/5">
+                    <a onClick={() => setActiveTab('statement')} role="tab" className={isActiveTab("statement")}>Problem Statement</a>
+                    <a onClick={() => setActiveTab('editorial')} role="tab" className={isActiveTab("editorial")}>Editorial</a>
+                    <a onClick={() => setActiveTab('submissions')} role="tab" className={isActiveTab("submissions")}>Submissions</a>
             </div>
             <div className='markdown-viewer p-[20px] basis-1/2'>
                 <Markdown>
