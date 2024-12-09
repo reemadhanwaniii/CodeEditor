@@ -19,12 +19,12 @@ export default function Description({ descriptionText }) {
     const [leftWidth,setLeftWidth] = useState(50);
     const [isDragging,setIsDragging] = useState(false);
 
-    const startDragging = (e) => {
+    const startDragging = (e: MouseEvent) => {
         setIsDragging(true);
         e.preventDefault();
     }
 
-    const stopDragging = (e) => {
+    const stopDragging = () => {
         if(isDragging){
             setIsDragging(false);
         }
@@ -41,7 +41,7 @@ export default function Description({ descriptionText }) {
 
     return(
       <div 
-        className='container flex w-full h-[100vh]'
+        className='flex w-screen h-screen'
         onMouseMove={onDrag}
         onMouseUp={stopDragging}
        
@@ -67,6 +67,7 @@ export default function Description({ descriptionText }) {
                         theme='monokai'
                         name='codeEditor'
                         className='editor'
+                        style={{ width: '100%'}}
                         setOptions={{
                             enableBasicAutocompletion: true,
                             enableLiveAutocompletion: true,
