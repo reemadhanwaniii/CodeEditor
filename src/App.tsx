@@ -1,6 +1,7 @@
 
 import './App.css'
 import Navbar from './components/Navbar';
+import SideBar from './components/Sidebar';
 import Description from './pages/Description/Description'
 import React from 'react';
 
@@ -16,6 +17,7 @@ function App() {
   return (
     <>
       <Navbar/>
+      <SideBar/>
       <Description descriptionText={markdownText}/>
     </>
   )
