@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Markdown from 'react-markdown';
 import Dompurify from 'dompurify';
 import AceEditor from 'react-ace';
+import rehypeRaw from 'rehype-raw';
 
 import "ace-builds/src-noconflict/theme-monokai";
 import 'ace-builds/src-noconflict/ace';
@@ -28,7 +29,7 @@ export default function Description({ descriptionText }: {descriptionText: strin
         }
     }
 
-    const startDragging = (e: MouseEvent) => {
+    const startDragging = (e) => {
         setIsDragging(true);
         e.preventDefault();
     }
@@ -62,7 +63,7 @@ export default function Description({ descriptionText }: {descriptionText: strin
                     <a onClick={() => setActiveTab('submissions')} role="tab" className={isActiveTab("submissions")}>Submissions</a>
             </div>
             <div className='markdown-viewer p-[20px] basis-1/2'>
-                <Markdown>
+                <Markdown rehypePlugins={[rehypeRaw]}>
                     {sanitizedMarkdown}
                 </Markdown>
 
