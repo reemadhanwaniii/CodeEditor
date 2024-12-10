@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,DragEvent } from 'react';
 import Markdown from 'react-markdown';
 import Dompurify from 'dompurify';
 import AceEditor from 'react-ace';
@@ -56,7 +56,7 @@ export default function Description({ descriptionText }: {descriptionText: strin
         }
     }
 
-    const startDragging = (e) => {
+    const startDragging = (e: DragEvent<HTMLDivElement>) => {
         setIsDragging(true);
         e.preventDefault();
     }
@@ -67,7 +67,7 @@ export default function Description({ descriptionText }: {descriptionText: strin
         }
     }
 
-    const onDrag = (e) => {
+    const onDrag = (e: DragEvent<HTMLDivElement>) => {
         if(!isDragging) return;
 
         const newLeftWidth = (e.clientX/window.innerWidth)*100;
