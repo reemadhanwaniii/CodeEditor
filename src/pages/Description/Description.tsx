@@ -41,6 +41,7 @@ export default function Description({ descriptionText }: {descriptionText: strin
 
     const sanitizedMarkdown = Dompurify.sanitize(descriptionText);
     const [activeTab,setActiveTab] = useState('statement');
+    const [testCaseTab, setTestCaseTab] = useState('input');
     const [leftWidth,setLeftWidth] = useState(50);
     const [isDragging,setIsDragging] = useState(false);
     const [language, setLanguage] = useState('javascript')
@@ -73,6 +74,14 @@ export default function Description({ descriptionText }: {descriptionText: strin
         const newLeftWidth = (e.clientX/window.innerWidth)*100;
         if(newLeftWidth > 10 && newLeftWidth < 90 ){
             setLeftWidth(newLeftWidth);
+        }
+    }
+
+    const isInputTabActive = (tabName: string) => {
+        if(testCaseTab === tabName) {
+            return 'tab tab-active';
+        } else {
+            return 'tab';
         }
     }
 
@@ -135,7 +144,7 @@ export default function Description({ descriptionText }: {descriptionText: strin
                         theme={theme}
                         name='codeEditor'
                         className='editor'
-                        style={{ width: '100%'}}
+                        style={{ width: '100%', minHeight: '550px'}}
                         setOptions={{
                             enableBasicAutocompletion: true,
                             enableLiveAutocompletion: true,
@@ -144,6 +153,22 @@ export default function Description({ descriptionText }: {descriptionText: strin
                         }}
                 />
             </div>
+            { /* Collapsable test case part */ }
+                <div className="collapse bg-base-200 rounded-none">
+                    <input type="checkbox" className="peer" /> 
+                    <div className="collapse-title bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
+                        Console
+                    </div>
+                    <div className="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content"> 
+                    <div role="tablist" className="tabs tabs-boxed w-3/5 mb-4">
+                        <a onClick={() => setTestCaseTab('input')} role="tab" className={isInputTabActive('input')}>Input</a>
+                        <a onClick={() => setTestCaseTab('output')} role="tab" className={isInputTabActive('output')}>Output</a>
+                    </div>
+                        
+                        {(testCaseTab === 'input') ? <textarea rows={4} cols={70} className='bg-neutral text-white rounded-md resize-none'/> : <div className='w-12 h-8'></div>}
+                    </div>
+                </div>
+
         </div>
       </div>
     )
