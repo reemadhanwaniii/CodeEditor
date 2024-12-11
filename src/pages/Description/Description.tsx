@@ -87,7 +87,7 @@ export default function Description({ descriptionText }: {descriptionText: strin
 
     return(
       <div 
-        className='flex w-screen h-screen'
+        className='flex w-screen h-[calc(100vh-57px)]'
         onMouseMove={onDrag}
         onMouseUp={stopDragging}
        
