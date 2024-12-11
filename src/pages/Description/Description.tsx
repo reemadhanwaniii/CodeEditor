@@ -4,24 +4,7 @@ import Dompurify from 'dompurify';
 import AceEditor from 'react-ace';
 import rehypeRaw from 'rehype-raw';
 
-import "ace-builds/src-noconflict/theme-github";
-import "ace-builds/src-noconflict/theme-github_dark";
-import "ace-builds/src-noconflict/theme-monokai";
-import 'ace-builds/src-noconflict/ace';
-import "ace-builds/src-noconflict/mode-javascript";
-import "ace-builds/src-noconflict/mode-c_cpp";
-import "ace-builds/src-noconflict/mode-java";
-import "ace-builds/src-noconflict/mode-python";
-import "ace-builds/src-noconflict/ext-language_tools";
-
-import "ace-builds/src-noconflict/theme-tomorrow";
-import "ace-builds/src-noconflict/theme-kuroir";
-import "ace-builds/src-noconflict/theme-twilight";
-import "ace-builds/src-noconflict/theme-xcode";
-import "ace-builds/src-noconflict/theme-textmate";
-import "ace-builds/src-noconflict/theme-solarized_dark";
-import "ace-builds/src-noconflict/theme-solarized_light";
-import "ace-builds/src-noconflict/theme-terminal";
+import "../../imports/AceBuildImports";
 
 import Languages from '../../constants/Languages';
 import Themes from '../../constants/Themes';
