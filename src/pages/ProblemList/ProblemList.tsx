@@ -1,21 +1,21 @@
+import CollapsableTopicProblem from "./CollapsableTopicProblems"
+import SampleProblemList from "../../constants/SampleProblemList";
+import { ProblemData } from "../../types/problem.types";
 import React from "react";
-import Sample from "./Sample";
 
-function ProblemList() {
-    let value = "something bigger";
-    return(
-        <>
-            Problem List
-            <br/>
-            <button onClick={() => {
-                console.log("Clicking ",value);
-                value= "Something greater" + Math.random();
-                console.log("Clicked", value);
-                }}>Click</button>
-            <br/>
-            <Sample text={value}/>
-        </>
-    );
+type Topic = {
+    topic: string;
+    topicId: string;
+    problems: ProblemData[];
 }
-
+function ProblemList() {
+    return (
+        <div className="flex justify-center items-center w-[100vw]">
+            <div className="topic-list flex flex-col w-[60%]">
+                    
+                   {SampleProblemList.map((topic: Topic) => <CollapsableTopicProblem topicName={topic.topic} key={topic.topicId} problems={topic.problems}/>)}
+            </div>
+        </div>
+    )
+}
 export default ProblemList;
